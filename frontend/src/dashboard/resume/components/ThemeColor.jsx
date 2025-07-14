@@ -16,7 +16,13 @@ function ThemeColor() {
         "#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#A133FF",
         "#33FFA1", "#FF7133", "#71FF33", "#7133FF", "#FF3371",
         "#33FF71", "#3371FF", "#A1FF33", "#33A1FF", "#FF5733",
-        "#5733FF", "#33FF5A", "#5A33FF", "#FF335A", "#335AFF"
+        "#5733FF", "#33FF5A", "#5A33FF", "#FF335A", "#335AFF",
+        // Add 5 shades of black/grey
+        "#000000", // Black
+        "#222222", // Very dark grey
+        "#444444", // Dark grey
+        "#666666", // Medium grey
+        "#888888"  // Light black/grey
     ]
 
     const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
@@ -33,9 +39,12 @@ function ThemeColor() {
                 themeColor: color
             }
         }
-        GlobalApi.UpdateResumeDetail(resumeId, data).then(resp => {
+        GlobalApi.UpdateResumeDetail(resumeInfo?.documentId || resumeId, data).then(resp => {
             console.log(resp);
             toast('Theme Color Updated')
+        }, (error) => {
+            toast('Failed to update theme color');
+            console.error(error);
         })
     }
 

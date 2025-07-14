@@ -11,9 +11,14 @@
     list-style: decimal;
     padding-left: 2em;
   }
-
+    /* //he ithe import ahe aplyala fakt resume hava ahe baki data print nahi karaycha nahi screen */
 
   @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
     #no-print {
       display: none;
     }
